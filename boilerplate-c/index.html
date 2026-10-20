@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#102c3a">
+    <title>Pogodnik — pogoda i prognoza</title>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <main class="app-shell">
+        <header class="topbar">
+            <a class="brand" href="#" aria-label="Pogodnik, strona główna">
+                <span class="brand-mark" aria-hidden="true">☼</span>
+                <span>pogodnik<span class="brand-dot">.</span></span>
+            </a>
+            <span class="topbar-note">POGODA NA TWOICH ZASADACH</span>
+        </header>
+
+        <section class="intro" aria-labelledby="page-title">
+            <p class="eyebrow">SPRAWDŹ, CO PRZYNIESIE DZIEŃ</p>
+            <h1 id="page-title">Pogoda zaczyna się <em>tutaj.</em></h1>
+            <p class="intro-copy">Wpisz miejscowość i zobacz aktualne warunki oraz prognozę na pięć dni.</p>
+        </section>
+
+        <form class="search-panel" id="weather-form">
+            <label class="field city-field">
+                <span class="field-label">Miejscowość</span>
+                <span class="input-wrap">
+                    <span class="input-icon" aria-hidden="true">⌖</span>
+                    <input id="city-input" name="city" type="text" placeholder="np. Kraków" autocomplete="address-level2" required>
+                </span>
+            </label>
+            <label class="field key-field">
+                <span class="field-label">Twój klucz OpenWeatherMap</span>
+                <span class="input-wrap">
+                    <span class="input-icon key-icon" aria-hidden="true">⌑</span>
+                    <input id="api-key-input" name="apiKey" type="password" placeholder="Wklej własny klucz API" autocomplete="off" required>
+                </span>
+            </label>
+            <button class="search-button" id="search-button" type="submit">
+                <span>Sprawdź pogodę</span><span aria-hidden="true">↗</span>
+            </button>
+            <p class="key-note">Klucz nie jest zapisywany; wysyłamy go wyłącznie do OpenWeatherMap.</p>
+        </form>
+
+        <p id="status-message" class="status-message" role="status" aria-live="polite"></p>
+
+        <section id="weather-results" class="results" aria-label="Wyniki pogody" hidden>
+            <article id="current-weather" class="current-card"></article>
+            <section class="forecast-section" aria-labelledby="forecast-heading">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">PLANUJ Z WYPRZEDZENIEM</p>
+                        <h2 id="forecast-heading">Najbliższe dni</h2>
+                    </div>
+                    <span class="forecast-period">5 DNI</span>
+                </div>
+                <div id="forecast-list" class="forecast-grid"></div>
+            </section>
+        </section>
+
+        <footer class="page-footer">
+            <span>Źródło danych: OpenWeatherMap</span>
+            <span>Świeże spojrzenie na pogodę <span class="footer-sun" aria-hidden="true">✳</span></span>
+        </footer>
+    </main>
+</body>
+</html>
