@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#102c3a">
-    <title>Pogodnik — pogoda i prognoza</title>
+    <title>Pogodynka — pogoda i prognoza</title>
     <link rel="stylesheet" href="styles.css" type="text/css">
     <script src="scripts.js" defer></script>
 </head>
@@ -13,7 +13,7 @@
         <header class="topbar">
             <a class="brand" href="#" aria-label="Pogodnik, strona główna">
                 <span class="brand-mark" aria-hidden="true">☼</span>
-                <span>pogodnik<span class="brand-dot">.</span></span>
+                <span>pogodynka<span class="brand-dot">.</span></span>
             </a>
             <span class="topbar-note">POGODA NA TWOICH ZASADACH</span>
         </header>
@@ -32,17 +32,9 @@
                     <input id="city-input" name="city" type="text" placeholder="np. Kraków" autocomplete="address-level2" required>
                 </span>
             </label>
-            <label class="field key-field">
-                <span class="field-label">Twój klucz OpenWeatherMap</span>
-                <span class="input-wrap">
-                    <span class="input-icon key-icon" aria-hidden="true">⌑</span>
-                    <input id="api-key-input" name="apiKey" type="password" placeholder="Wklej własny klucz API" autocomplete="off" required>
-                </span>
-            </label>
             <button class="search-button" id="search-button" type="submit">
                 <span>Sprawdź pogodę</span><span aria-hidden="true">↗</span>
             </button>
-            <p class="key-note">Klucz nie jest zapisywany; wysyłamy go wyłącznie do OpenWeatherMap.</p>
         </form>
 
         <p id="status-message" class="status-message" role="status" aria-live="polite"></p>
@@ -52,10 +44,10 @@
             <section class="forecast-section" aria-labelledby="forecast-heading">
                 <div class="section-heading">
                     <div>
-                        <p class="eyebrow">PLANUJ Z WYPRZEDZENIEM</p>
-                        <h2 id="forecast-heading">Najbliższe dni</h2>
+                        <p class="eyebrow">PROGNOZA CO 3 GODZINY</p>
+                        <h2 id="forecast-heading">Najbliższe 15 godzin</h2>
                     </div>
-                    <span class="forecast-period">5 DNI</span>
+                    <span class="forecast-period">15 GODZIN</span>
                 </div>
                 <div id="forecast-list" class="forecast-grid"></div>
             </section>

@@ -122,7 +122,7 @@ h1 em {
 
 .search-panel {
     display: grid;
-    grid-template-columns: minmax(180px, 1.1fr) minmax(210px, 1.1fr) auto;
+    grid-template-columns: minmax(180px, 1fr) auto;
     align-items: end;
     gap: 14px;
     padding: 23px;
@@ -166,10 +166,6 @@ h1 em {
     line-height: 1;
 }
 
-.key-icon {
-    font-size: 19px;
-}
-
 .input-wrap input {
     width: 100%;
     min-width: 0;
@@ -210,13 +206,6 @@ h1 em {
     cursor: wait;
     opacity: 0.7;
     transform: none;
-}
-
-.key-note {
-    grid-column: 1 / -1;
-    margin: 0;
-    color: #8b9894;
-    font-size: 11px;
 }
 
 .status-message {
@@ -358,7 +347,7 @@ h2 {
 
 .forecast-grid {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 11px;
 }
 
@@ -426,15 +415,15 @@ h2 {
 
 @media (max-width: 760px) {
     .search-panel {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
     }
 
     .search-button {
-        grid-column: 1 / -1;
+        grid-column: auto;
     }
 
     .forecast-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
 
@@ -474,8 +463,7 @@ h2 {
         padding: 17px;
     }
 
-    .search-button,
-    .key-note {
+    .search-button {
         grid-column: auto;
     }
 

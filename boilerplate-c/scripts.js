@@ -1,6 +1,5 @@
 const form = document.querySelector("#weather-form");
 const cityInput = document.querySelector("#city-input");
-const apiKeyInput = document.querySelector("#api-key-input");
 const searchButton = document.querySelector("#search-button");
 const statusMessage = document.querySelector("#status-message");
 const results = document.querySelector("#weather-results");
@@ -8,15 +7,14 @@ const currentWeather = document.querySelector("#current-weather");
 const forecastList = document.querySelector("#forecast-list");
 
 const API_BASE = "https://api.openweathermap.org/data/2.5";
+const API_KEY = "7ded80d91f2b280ec979100cc8bbba94";
 
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const city = cityInput.value.trim();
-    const apiKey = "7ded80d91f2b280ec979100cc8bbba94";
-      //apiKeyInput.value.trim();
-    if (!city || !apiKey) {
-        statusMessage.textContent = "Podaj miejscowość i własny klucz API.";
+    if (!city) {
+        statusMessage.textContent = "Podaj miejscowość.";
         return;
     }
 
@@ -30,8 +28,8 @@ form.addEventListener("submit", async (event) => {
     let hasResults = false;
     try {
         const [currentResult, forecastResult] = await Promise.allSettled([
-            loadCurrentWeather(city, apiKey),
-            loadForecast(city, apiKey)
+            loadCurrentWeather(city, API_KEY),
+            loadForecast(city, API_KEY)
         ]);
 
         if (currentResult.status === "fulfilled") {
@@ -154,46 +152,33 @@ function renderCurrentWeather(data) {
 }
 
 function renderForecast(data) {
-    const byDay = new Map();
-    for (const item of data.list) {
-        const localTime = new Date((item.dt + data.city.timezone) * 1000);
-        const dayKey = [
-            localTime.getUTCFullYear(),
-            String(localTime.getUTCMonth() + 1).padStart(2, "0"),
-            String(localTime.getUTCDate()).padStart(2, "0")
-        ].join("-");
-        const distanceFromNoon = Math.abs(localTime.getUTCHours() - 12);
-        const existing = byDay.get(dayKey);
-        if (!existing || distanceFromNoon < existing.distanceFromNoon) {
-            byDay.set(dayKey, { item, localTime, distanceFromNoon });
-        }
-    }
-
-    const days = [...byDay.values()].slice(0, 5);
-    if (days.length === 0) {
+    if (data.list.length === 0) {
         throw new Error("brak danych prognozy dla tej miejscowości.");
     }
 
-    forecastList.innerHTML = days.map(({ item, localTime }, index) => {
+    forecastList.innerHTML = data.list.slice(0, 5).map((item) => {
         const weather = item.weather[0];
-        const dayName = index === 0
-            ? "Dziś"
-            : new Intl.DateTimeFormat("pl-PL", { weekday: "long", timeZone: "UTC" }).format(localTime);
+        const localTime = new Date((item.dt + data.city.timezone) * 1000);
         const date = new Intl.DateTimeFormat("pl-PL", {
+            weekday: "short",
             day: "numeric",
             month: "short",
+            timeZone: "UTC"
+        }).format(localTime);
+        const time = new Intl.DateTimeFormat("pl-PL", {
+            hour: "2-digit",
+            minute: "2-digit",
             timeZone: "UTC"
         }).format(localTime);
 
         return `
             <article class="forecast-card">
-                <p class="forecast-day">${escapeHtml(dayName)}</p>
-                <p class="forecast-date">${escapeHtml(date)}</p>
+                <p class="forecast-day">${escapeHtml(date)}</p>
+                <p class="forecast-date">${escapeHtml(time)}</p>
                 <img class="forecast-icon" src="${weatherIconUrl(weather.icon)}" alt="${escapeHtml(weather.description)}">
                 <p class="forecast-description">${escapeHtml(weather.description)}</p>
                 <div class="forecast-temperatures">
-                    <span>${Math.round(item.main.temp_max)}°</span>
-                    <span class="forecast-low">${Math.round(item.main.temp_min)}°</span>
+                    <span>${Math.round(item.main.temp)}°C</span>
                 </div>
             </article>`;
     }).join("");
