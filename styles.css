@@ -1,0 +1,464 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+
+:root {
+    color-scheme: light;
+    font-family: "DM Sans", sans-serif;
+    color: #525252;
+    background: #f3f6f3;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    --ink: #525252;
+    --muted: #525252;
+    --teal: #176c66;
+    --line: #e5ebe7;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    background:
+        radial-gradient(ellipse at 90% 2%, rgba(215, 231, 213, 0.63), transparent 29rem),
+        #f3f6f3;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.app-shell {
+    width: min(100% - 56px, 1080px);
+    margin: 0 auto;
+}
+
+.topbar {
+    height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(23, 49, 60, 0.1);
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--ink);
+    text-decoration: none;
+    font-family: "Manrope", sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.brand-mark {
+    display: grid;
+    width: 32px;
+    height: 32px;
+    place-items: center;
+    border-radius: 11px;
+    color: white;
+    background: var(--teal);
+    font-size: 23px;
+    line-height: 1;
+}
+
+.brand-dot {
+    color: #d89745;
+}
+
+.topbar-note,
+.eyebrow,
+.forecast-period {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.55px;
+}
+
+.topbar-note {
+    color: #525252;
+}
+
+.eyebrow {
+    margin: 0;
+    color: var(--teal);
+}
+
+h2,
+p {
+    margin-top: 0;
+}
+
+.search-panel {
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) auto;
+    align-items: end;
+    gap: 14px;
+    padding: 23px;
+    border: 1px solid rgba(23, 49, 60, 0.07);
+    border-radius: 19px;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 15px 45px rgba(28, 55, 48, 0.07);
+}
+
+.field {
+    display: grid;
+    gap: 8px;
+}
+
+.field-label {
+    color: #525252;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.input-wrap {
+    display: flex;
+    min-width: 0;
+    height: 49px;
+    align-items: center;
+    gap: 10px;
+    padding: 0 13px;
+    border: 1px solid #e3e9e5;
+    border-radius: 10px;
+    background: #fbfcfa;
+}
+
+.input-wrap:focus-within {
+    border-color: #76a9a2;
+    box-shadow: 0 0 0 3px rgba(23, 108, 102, 0.1);
+}
+
+.input-icon {
+    color: #525252;
+    font-size: 21px;
+    line-height: 1;
+}
+
+.input-wrap input {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    color: var(--ink);
+    background: transparent;
+    font-size: 13px;
+}
+
+.input-wrap input::placeholder {
+    color: #525252;
+}
+
+.search-button {
+    height: 49px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 0 19px;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    background: var(--teal);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    transition: background 160ms ease, transform 160ms ease;
+}
+
+.search-button:hover {
+    transform: translateY(-1px);
+    background: #105a55;
+}
+
+.search-button:disabled {
+    cursor: wait;
+    opacity: 0.7;
+    transform: none;
+}
+
+.status-message {
+    min-height: 20px;
+    margin: 17px 3px 0;
+    color: #ad5c34;
+    font-size: 13px;
+}
+
+.status-message:empty {
+    min-height: 8px;
+    margin-top: 12px;
+}
+
+.results[hidden] {
+    display: none;
+}
+
+.results {
+    display: grid;
+    gap: 36px;
+    padding: 10px 0 55px;
+}
+
+.current-card {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    min-height: 235px;
+    padding: 33px 40px;
+    border-radius: 21px;
+    color: white;
+    background:
+        radial-gradient(circle at 87% 45%, rgba(110, 174, 155, 0.28), transparent 18rem),
+        #173b45;
+}
+
+.current-card::after {
+    position: absolute;
+    top: -90px;
+    right: 150px;
+    width: 240px;
+    height: 240px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    content: "";
+    pointer-events: none;
+}
+
+.current-place,
+.current-date {
+    margin-bottom: 5px;
+}
+
+.current-place {
+    font-family: "Manrope", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.7px;
+}
+
+.current-date {
+    color: #b0c3c2;
+    font-size: 12px;
+}
+
+.current-description {
+    margin: 22px 0 0;
+    color: #d4e1dc;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+.current-temperature {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.current-temperature strong {
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(58px, 9vw, 82px);
+    font-weight: 500;
+    letter-spacing: -5px;
+    line-height: 1;
+}
+
+.current-icon {
+    width: 74px;
+    height: 74px;
+}
+
+.current-details {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 25px;
+    padding-top: 17px;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    color: #d4e1dc;
+    font-size: 12px;
+}
+
+.current-details b {
+    margin-left: 5px;
+    color: white;
+    font-weight: 600;
+}
+
+.forecast-section {
+    display: grid;
+    gap: 18px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.section-heading .eyebrow {
+    margin-bottom: 6px;
+}
+
+h2 {
+    margin-bottom: 0;
+    font-family: "Manrope", sans-serif;
+    font-size: 23px;
+    letter-spacing: -0.8px;
+}
+
+.forecast-period {
+    padding-bottom: 4px;
+    color: #525252;
+}
+
+.forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 11px;
+}
+
+.forecast-card {
+    min-width: 0;
+    padding: 18px 10px 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.7);
+    text-align: center;
+}
+
+.forecast-day {
+    margin-bottom: 3px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.forecast-date {
+    margin-bottom: 7px;
+    color: #525252;
+    font-size: 11px;
+}
+
+.forecast-icon {
+    width: 54px;
+    height: 54px;
+}
+
+.forecast-description {
+    min-height: 30px;
+    margin: 1px 0 10px;
+    color: #525252;
+    font-size: 11px;
+    line-height: 1.4;
+    text-transform: capitalize;
+}
+
+.forecast-temperatures {
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.forecast-low {
+    color: #525252;
+    font-weight: 500;
+}
+
+.page-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0 26px;
+    border-top: 1px solid rgba(23, 49, 60, 0.1);
+    color: #525252;
+    font-size: 12px;
+}
+
+.footer-sun {
+    margin-left: 3px;
+    color: #d89745;
+}
+
+@media (max-width: 760px) {
+    .search-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .search-button {
+        grid-column: auto;
+    }
+
+    .forecast-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .app-shell {
+        width: min(100% - 32px, 1080px);
+    }
+
+    .topbar {
+        height: 68px;
+    }
+
+    .topbar-note {
+        max-width: 120px;
+        font-size: 9px;
+        text-align: right;
+    }
+
+    .search-panel {
+        grid-template-columns: 1fr;
+        gap: 13px;
+        padding: 17px;
+    }
+
+    .search-button {
+        grid-column: auto;
+    }
+
+    .current-card {
+        min-height: 220px;
+        padding: 25px 22px;
+    }
+
+    .current-place {
+        font-size: 20px;
+    }
+
+    .current-temperature {
+        gap: 0;
+    }
+
+    .current-temperature strong {
+        font-size: 58px;
+    }
+
+    .current-icon {
+        width: 53px;
+        height: 53px;
+    }
+
+    .current-details {
+        gap: 10px 18px;
+        margin-top: 20px;
+    }
+
+    .forecast-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .page-footer {
+        gap: 12px;
+        font-size: 10px;
+    }
+}

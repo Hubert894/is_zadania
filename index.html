@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#102c3a">
+    <title>Pogodynka — pogoda i prognoza</title>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <main class="app-shell">
+        <header class="topbar">
+            <a class="brand" href="#" aria-label="Pogodnik, strona główna">
+                <span class="brand-mark" aria-hidden="true">☼</span>
+                <span>pogodynka<span class="brand-dot">.</span></span>
+            </a>
+            <span class="topbar-note">POGODA NA TWOICH ZASADACH</span>
+        </header>
+
+        <form class="search-panel" id="weather-form">
+            <label class="field city-field">
+                <span class="field-label">Miejscowość</span>
+                <span class="input-wrap">
+                    <span class="input-icon" aria-hidden="true">⌖</span>
+                    <input id="city-input" name="city" type="text" placeholder="np. Kraków" autocomplete="address-level2" required>
+                </span>
+            </label>
+            <button class="search-button" id="search-button" type="submit">
+                <span>Sprawdź pogodę</span><span aria-hidden="true">↗</span>
+            </button>
+        </form>
+
+        <p id="status-message" class="status-message" role="status" aria-live="polite"></p>
+
+        <section id="weather-results" class="results" aria-label="Wyniki pogody" hidden>
+            <article id="current-weather" class="current-card"></article>
+            <section class="forecast-section" aria-labelledby="forecast-heading">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">PROGNOZA CO 3 GODZINY</p>
+                        <h2 id="forecast-heading">Najbliższe 18 godzin</h2>
+                    </div>
+                    <span class="forecast-period">18 GODZIN</span>
+                </div>
+                <div id="forecast-list" class="forecast-grid"></div>
+            </section>
+        </section>
+
+        <footer class="page-footer">
+            <span>Źródło danych: OpenWeatherMap</span>
+            <span>Świeże spojrzenie na pogodę <span class="footer-sun" aria-hidden="true">✳</span></span>
+        </footer>
+    </main>
+</body>
+</html>
