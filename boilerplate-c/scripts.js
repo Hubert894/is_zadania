@@ -7,7 +7,7 @@ const currentWeather = document.querySelector("#current-weather");
 const forecastList = document.querySelector("#forecast-list");
 
 const API_BASE = "https://api.openweathermap.org/data/2.5";
-const API_KEY = "7ded80d91f2b280ec979100cc8bbba94";
+const API_KEY = "cb25a4a8df123a8b6d355353e857b39a";
 
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -94,6 +94,13 @@ function loadCurrentWeather(city, apiKey) {
         request.send();
     });
 }
+loadCurrentWeather("Szczecin", API_KEY)
+  .then(data => {
+    console.log("Odpowiedź z API pogody:", data);
+  })
+  .catch(error => {
+    console.error("Błąd pobierania danych:", error);
+  });
 
 async function loadForecast(city, apiKey) {
     const params = new URLSearchParams({
@@ -122,6 +129,13 @@ function getApiError(data, status) {
     }
     return `błąd serwera (${status}).`;
 }
+loadForecast("Szczecin", API_KEY)
+  .then(data => {
+    console.log("Odpowiedź z API pogody:", data);
+  })
+  .catch(error => {
+    console.error("Błąd pobierania danych:", error);
+  });
 
 function renderCurrentWeather(data) {
     const weather = data.weather[0];
@@ -156,7 +170,7 @@ function renderForecast(data) {
         throw new Error("brak danych prognozy dla tej miejscowości.");
     }
 
-    forecastList.innerHTML = data.list.slice(0, 5).map((item) => {
+    forecastList.innerHTML = data.list.slice(0, 6).map((item) => {
         const weather = item.weather[0];
         const localTime = new Date((item.dt + data.city.timezone) * 1000);
         const date = new Intl.DateTimeFormat("pl-PL", {

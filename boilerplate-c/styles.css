@@ -3,12 +3,12 @@
 :root {
     color-scheme: light;
     font-family: "DM Sans", sans-serif;
-    color: #17313c;
+    color: #525252;
     background: #f3f6f3;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
-    --ink: #17313c;
-    --muted: #718187;
+    --ink: #525252;
+    --muted: #525252;
     --teal: #176c66;
     --line: #e5ebe7;
 }
@@ -81,12 +81,7 @@ input {
 }
 
 .topbar-note {
-    color: #81908c;
-}
-
-.intro {
-    padding: 70px 0 35px;
-    text-align: center;
+    color: #525252;
 }
 
 .eyebrow {
@@ -94,30 +89,9 @@ input {
     color: var(--teal);
 }
 
-h1,
 h2,
 p {
     margin-top: 0;
-}
-
-h1 {
-    margin: 14px 0 12px;
-    font-family: "Manrope", sans-serif;
-    font-size: clamp(34px, 5vw, 53px);
-    font-weight: 600;
-    letter-spacing: -2.7px;
-    line-height: 1.12;
-}
-
-h1 em {
-    color: var(--teal);
-    font-style: normal;
-}
-
-.intro-copy {
-    margin-bottom: 0;
-    color: var(--muted);
-    font-size: 15px;
 }
 
 .search-panel {
@@ -138,7 +112,7 @@ h1 em {
 }
 
 .field-label {
-    color: #687a7d;
+    color: #525252;
     font-size: 11px;
     font-weight: 700;
 }
@@ -161,7 +135,7 @@ h1 em {
 }
 
 .input-icon {
-    color: #738984;
+    color: #525252;
     font-size: 21px;
     line-height: 1;
 }
@@ -177,7 +151,7 @@ h1 em {
 }
 
 .input-wrap input::placeholder {
-    color: #a0aaa7;
+    color: #525252;
 }
 
 .search-button {
@@ -342,7 +316,7 @@ h2 {
 
 .forecast-period {
     padding-bottom: 4px;
-    color: #8b9994;
+    color: #525252;
 }
 
 .forecast-grid {
@@ -362,14 +336,14 @@ h2 {
 
 .forecast-day {
     margin-bottom: 3px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
 }
 
 .forecast-date {
     margin-bottom: 7px;
-    color: #899691;
-    font-size: 10px;
+    color: #525252;
+    font-size: 11px;
 }
 
 .forecast-icon {
@@ -380,8 +354,8 @@ h2 {
 .forecast-description {
     min-height: 30px;
     margin: 1px 0 10px;
-    color: #778681;
-    font-size: 10px;
+    color: #525252;
+    font-size: 11px;
     line-height: 1.4;
     text-transform: capitalize;
 }
@@ -390,12 +364,12 @@ h2 {
     display: flex;
     justify-content: center;
     gap: 9px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
 }
 
 .forecast-low {
-    color: #94a09c;
+    color: #525252;
     font-weight: 500;
 }
 
@@ -404,8 +378,8 @@ h2 {
     justify-content: space-between;
     padding: 20px 0 26px;
     border-top: 1px solid rgba(23, 49, 60, 0.1);
-    color: #8b9894;
-    font-size: 11px;
+    color: #525252;
+    font-size: 12px;
 }
 
 .footer-sun {
@@ -438,23 +412,8 @@ h2 {
 
     .topbar-note {
         max-width: 120px;
-        font-size: 8px;
+        font-size: 9px;
         text-align: right;
-    }
-
-    .intro {
-        padding: 53px 0 27px;
-    }
-
-    h1 {
-        letter-spacing: -1.8px;
-    }
-
-    .intro-copy {
-        max-width: 320px;
-        margin: 0 auto;
-        font-size: 13px;
-        line-height: 1.6;
     }
 
     .search-panel {
