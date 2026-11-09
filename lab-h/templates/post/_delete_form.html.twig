@@ -1,0 +1,4 @@
+<form class="d-inline" method="post" action="{{ path('app_post_delete', {'id': post.id}) }}" onsubmit="return confirm('Czy na pewno chcesz usunąć ten wpis?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ post.id) }}">
+    <button class="btn btn-outline-danger" type="submit">Usuń wpis</button>
+</form>

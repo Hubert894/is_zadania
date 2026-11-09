@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nowy wpis{% endblock %}
+
+{% block body %}
+    <h1 class="page-heading mb-4">Nowy wpis</h1>
+    {{ include('post/_form.html.twig', {'button_label': 'Zapisz wpis'}) }}
+    <a class="btn btn-outline-secondary mt-3" href="{{ path('app_post_index') }}">Wróć do wpisów</a>
+{% endblock %}

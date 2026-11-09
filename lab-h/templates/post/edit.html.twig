@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edytuj wpis{% endblock %}
+
+{% block body %}
+    <h1 class="page-heading mb-4">Edytuj wpis</h1>
+    {{ include('post/_form.html.twig', {'button_label': 'Zapisz zmiany'}) }}
+    <div class="form-actions mt-3">
+        <a class="btn btn-outline-secondary" href="{{ path('app_post_index') }}">Wróć do wpisów</a>
+        {{ include('post/_delete_form.html.twig') }}
+    </div>
+{% endblock %}
